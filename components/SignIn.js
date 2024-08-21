@@ -1,9 +1,24 @@
-import React from 'react';
-import { View, StyleSheet, Text , Image} from 'react-native';
+import React, { useState } from 'react';
 import {LinearGradient} from 'expo-linear-gradient';
+import { View, StyleSheet, Text , Image, TextInput, Alert} from 'react-native';
 
 
 const SignIn = ({ navigation }) => {
+    const [loginData, SetloginData] = useState({
+      email: '',
+      password: '',
+    })
+
+    const handleInputChange = (name, value) => {
+      SetloginData({
+        ...loginData,
+        [name]: value,
+      });
+    };
+
+    const headleLogin = () => {
+
+    }
   return (
     <LinearGradient
       colors={['#cda4fb', '#e3ccfc']}
@@ -12,6 +27,28 @@ const SignIn = ({ navigation }) => {
       end={{ x: 0, y: 0 }}
     >
       <View style={styles.container}>
+      <View className='my-2'>
+
+        <Text className="text-center font-semibold text-xl text-gray-600">SignUp Here</Text>
+          <TextInput
+            placeholder="Email Address"
+            value={loginData.email}
+            onChangeText={(value) => handleInputChange('email', value)}
+            className='bg-purple-600/70 h-12 rounded-xl pl-4 my-2 text-white'
+          />
+          <TextInput
+            placeholder="Password"
+            value={loginData.password}
+            secureTextEntry={true}
+            onChangeText={(value) => handleInputChange('password', value)}
+            className='bg-purple-600/70 h-12 rounded-xl pl-4 my-2 text-white'
+          />
+
+          <Text className='bg-purple-400 text-center py-4 rounded-full text-white font-semibold' onPress={headleLogin}>
+            Login
+          </Text>
+
+        </View>
         <Text className="text-center font-semibold text-xl text-gray-600">Welcome Back</Text>
 
         <Image
